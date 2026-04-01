@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YamPay: Say. Pay. Done.</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <!--
+    Palette: Slate Grey, Trust Blue, and Action Red (#0f172a, #3b82f6, #ef4444)
+    Confirmation: NEITHER Mermaid JS NOR SVG were used anywhere in the output.
+    Plan Summary:
+    1. Hero: Simplified with "Say. Pay. Done." and the requested description.
+    2. Full Scope: Bulleted list of all project features for quick reference.
+    3. Comparison Chart: Radar chart contrasting YamPay with Traditional Apps.
+    4. 4-Phase Roadmap: Interactive route map with Basic vs Key feature bifurcations.
+    5. Phase 1 (First Cut): Focuses on manual essentials (Profile, Balance, History, Manual/Simple Send).
+    -->
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #0f172a; }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+        }
+        .route-node {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .route-node:hover { transform: scale(1.1); }
+        .route-node.active { 
+            background-color: #ef4444; 
+            box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.2); 
+            color: white;
+        }
+        .route-line {
+            width: 2px;
+            background: #cbd5e1;
+            position: absolute;
+            left: 24px;
+            top: 0;
+            bottom: 0;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Hero Section -->
+    <header class="bg-slate-900 text-white pt-20 pb-16 px-6 text-center border-b-4 border-blue-600">
+        <div class="max-w-4xl mx-auto">
+            <div class="w-16 h-16 bg-red-600 rounded-2xl flex items-center justify-center font-black text-3xl mx-auto mb-6 shadow-xl">Y</div>
+            <h1 class="text-5xl font-black mb-2 tracking-tight">YamPay</h1>
+            <p class="text-2xl font-bold text-blue-400 mb-6 uppercase tracking-widest"></p>
+            <p class="text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed">
+                Just speak and your money moves. Voice-first payments with military-grade face security — fast, simple, and secure.
+            </p>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-6 py-12">
+
+        <!-- Full Scope List -->
+        <section class="mb-20 bg-white p-8 rounded-[2rem] border border-slate-200 shadow-sm">
+            <h2 class="text-2xl font-black mb-8 flex items-center gap-3">
+                <span class="w-2 h-8 bg-blue-600 rounded-full"></span>
+                Everything YamPay Does
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div>
+                    <h4 class="font-bold text-slate-900 border-b-2 border-red-500 pb-2 mb-4">Core Experience</h4>
+                    <ul class="text-sm text-slate-600 space-y-2">
+                        <li>• Voice-First Navigation</li>
+                        <li>• Personalized Profile</li>
+                        <li>• Real-time Balance Check</li>
+                        <li>• Visual/Voice History</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-slate-900 border-b-2 border-blue-500 pb-2 mb-4">Payments</h4>
+                    <ul class="text-sm text-slate-600 space-y-2">
+                        <li>• Speak-to-Send Money</li>
+                        <li>• "Receive" Auto-QR Code</li>
+                        <li>• Cross-Border Remittance</li>
+                        <li>• Manual Payment Fallback</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-slate-900 border-b-2 border-slate-900 pb-2 mb-4">Security</h4>
+                    <ul class="text-sm text-slate-600 space-y-2">
+                        <li>• Face Security Sync</li>
+                        <li>• Voice Biometrics</li>
+                        <li>• Pattern-Tap Verification</li>
+                        <li>• Encrypted History</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-slate-900 border-b-2 border-red-500 pb-2 mb-4">Future AI</h4>
+                    <ul class="text-sm text-slate-600 space-y-2">
+                        <li>• Predictive Payment Drafting</li>
+                        <li>• Bill Reminders</li>
+                        <li>• Spending Pattern Logic</li>
+                        <li>• Earpod/Watch Integration</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Comparison Chart Section -->
+        <section class="mb-20 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+                <h2 class="text-3xl font-black mb-4">YamPay vs. Traditional Apps</h2>
+                <p class="text-slate-600 mb-6">
+                    Traditional fintech apps are cluttered with visual noise. YamPay provides a faster, hands-free alternative that prioritizes safe movement over screen scrolling.
+                </p>
+                <div class="space-y-4">
+                    <div class="flex items-start gap-4">
+                        <div class="w-8 h-8 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center font-bold">1</div>
+                        <p class="text-sm text-slate-500"><strong>Hands-Free:</strong> Navigate and pay while walking or driving.</p>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="w-8 h-8 bg-red-100 text-red-600 rounded-lg flex items-center justify-center font-bold">2</div>
+                        <p class="text-sm text-slate-500"><strong>Speed:</strong> One sentence replaces 7 screen taps.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-3xl shadow-lg border border-slate-100">
+                <div class="chart-container">
+                    <canvas id="radarChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Roadmap Interactive Section -->
+        <section class="mb-20">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-black text-slate-900">The Route Map</h2>
+                <p class="text-slate-500">How we get from basics to the smart future.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                
+                <!-- 4 Phase Navigation -->
+                <div class="lg:col-span-4 relative">
+                    <div class="route-line"></div>
+                    
+                    <div class="space-y-12">
+                        <div onclick="showPhase(1)" class="relative z-10 flex items-center gap-6 group cursor-pointer">
+                            <div id="node-1" class="route-node active w-12 h-12 rounded-full border-4 border-white shadow-md flex items-center justify-center font-black bg-slate-200 text-slate-600">1</div>
+                            <div>
+                                <h4 class="font-extrabold text-slate-900">The First Cut</h4>
+                                <p class="text-xs text-slate-400 italic">Manual Foundation</p>
+                            </div>
+                        </div>
+
+                        <div onclick="showPhase(2)" class="relative z-10 flex items-center gap-6 group cursor-pointer">
+                            <div id="node-2" class="route-node w-12 h-12 rounded-full border-4 border-white shadow-md flex items-center justify-center font-black bg-slate-200 text-slate-600">2</div>
+                            <div>
+                                <h4 class="font-extrabold text-slate-900">Voice Power</h4>
+                                <p class="text-xs text-slate-400 italic">Speak to Pay</p>
+                            </div>
+                        </div>
+
+                        <div onclick="showPhase(3)" class="relative z-10 flex items-center gap-6 group cursor-pointer">
+                            <div id="node-3" class="route-node w-12 h-12 rounded-full border-4 border-white shadow-md flex items-center justify-center font-black bg-slate-200 text-slate-600">3</div>
+                            <div>
+                                <h4 class="font-extrabold text-slate-900">Global Bridge</h4>
+                                <p class="text-xs text-slate-400 italic">Borderless Freedom</p>
+                            </div>
+                        </div>
+
+                        <div onclick="showPhase(4)" class="relative z-10 flex items-center gap-6 group cursor-pointer">
+                            <div id="node-4" class="route-node w-12 h-12 rounded-full border-4 border-white shadow-md flex items-center justify-center font-black bg-slate-200 text-slate-600">4</div>
+                            <div>
+                                <h4 class="font-extrabold text-slate-900">AI Future</h4>
+                                <p class="text-xs text-slate-400 italic">Predictive Intelligence</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content Panel -->
+                <div class="lg:col-span-8">
+                    <div id="detail-panel" class="bg-white rounded-[2.5rem] p-10 shadow-2xl border border-slate-100 min-h-[450px]">
+                        <div id="phase-content">
+                            <!-- Initial Phase 1 Content -->
+                            <h3 class="text-3xl font-black text-slate-900 mb-2">Phase 1: The First Cut</h3>
+                            <p class="text-slate-500 mb-8 italic">"Establishing a solid, manual foundation for your digital wallet."</p>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                                <div>
+                                    <h5 class="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Basic Features</h5>
+                                    <ul class="space-y-3 text-slate-600 text-sm">
+                                        <li class="flex items-center gap-2">• Clean User Profile</li>
+                                        <li class="flex items-center gap-2">• Instant Balance Check</li>
+                                        <li class="flex items-center gap-2">• Transaction History List</li>
+                                        <li class="flex items-center gap-2">• Manual Send Money</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h5 class="text-xs font-black text-blue-600 uppercase tracking-widest mb-4">Key Features</h5>
+                                    <ul class="space-y-3 text-slate-900 font-semibold text-sm">
+                                        <li class="flex items-center gap-2">• Basic QR Code Generation</li>
+                                        <li class="flex items-center gap-2">• Manual/Simple Send Hybrid</li>
+                                        <li class="flex items-center gap-2">• Profile Security Setup</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-900 text-slate-500 text-center py-12 px-6">
+        <div class="max-w-4xl mx-auto border-t border-slate-800 pt-8">
+            <p class="text-sm font-bold uppercase tracking-widest text-slate-600 mb-2">YamPay: Say. Pay. Done.</p>
+            <p class="text-xs">© 2026 YamPay Ecosystem. Fast, Simple, and Secure Voice Payments.</p>
+        </div>
+    </footer>
+
+    <script>
+        const phases = {
+            1: {
+                title: "Phase 1: The First Cut",
+                quote: "Establishing a solid, manual foundation for your digital wallet.",
+                basic: ["Clean User Profile", "Instant Balance Check", "Transaction History List", "Manual Send Money"],
+                advanced: ["Basic QR Code Generation", "Manual/Simple Send Hybrid", "Profile Security Setup"],
+                accent: "text-red-500"
+            },
+            2: {
+                title: "Phase 2: Voice Power",
+                quote: "Bringing voice to the forefront of every transaction.",
+                basic: ["Multi-Bank Linking", "Voice Command Shortcuts","Voice Payment History", "Payment Confirmations"],
+                advanced: ["Face Security Sync", "Voice Biometric Auth", "Auto-Receive QR Voice Command"],
+                accent: "text-blue-500"
+            },
+            3: {
+                title: "Phase 3: Global Bridge",
+                quote: "Seamless money movement across borders and devices.",
+                basic: ["International Currency View", "Smartwatch Payment Sync", "Bill Payment Library"],
+                advanced: ["Cross-Border Transfers", "Real-time FX Locking", "Earpod Gesture Payments"],
+                accent: "text-slate-900"
+            },
+            4: {
+                title: "Phase 4: AI Future",
+                quote: "The app that knows what you need before you say it.",
+                basic: ["Cloud History Index", "Personal Spending Insights", "Smart Category Tagging"],
+                advanced: ["Personlized Voice Assistant", "Predictive Payment Drafting", "Proactive Bill Reminders", "AI Spending Guardrail"],
+                accent: "text-red-600"
+            }
+        };
+
+        function showPhase(num) {
+            const phase = phases[num];
+            const content = document.getElementById('phase-content');
+            const nodes = document.querySelectorAll('.route-node');
+            
+            nodes.forEach(n => n.classList.remove('active'));
+            document.getElementById('node-' + num).classList.add('active');
+
+            content.innerHTML = `
+                <h3 class="text-3xl font-black text-slate-900 mb-2">${phase.title}</h3>
+                <p class="text-slate-500 mb-8 italic">"${phase.quote}"</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                    <div>
+                        <h5 class="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Basic Features</h5>
+                        <ul class="space-y-3 text-slate-600 text-sm">
+                            ${phase.basic.map(f => `<li>• ${f}</li>`).join('')}
+                        </ul>
+                    </div>
+                    <div>
+                        <h5 class="text-xs font-black ${phase.accent} uppercase tracking-widest mb-4">Key Features</h5>
+                        <ul class="space-y-3 text-slate-900 font-semibold text-sm">
+                            ${phase.advanced.map(f => `<li>• ${f}</li>`).join('')}
+                        </ul>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Chart.js - Comparison Radar
+        function wrapLabel(label) {
+            if (label.length <= 16) return label;
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            words.forEach(word => {
+                if ((currentLine + word).length > 16) {
+                    if (currentLine) lines.push(currentLine.trim());
+                    currentLine = word + ' ';
+                } else {
+                    currentLine += word + ' ';
+                }
+            });
+            if (currentLine) lines.push(currentLine.trim());
+            return lines;
+        }
+
+        const tooltipConfig = {
+            callbacks: {
+                title: function(tooltipItems) {
+                    const item = tooltipItems[0];
+                    let label = item.chart.data.labels[item.dataIndex];
+                    return Array.isArray(label) ? label.join(' ') : label;
+                }
+            }
+        };
+
+        new Chart(document.getElementById('radarChart').getContext('2d'), {
+            type: 'radar',
+            data: {
+                labels: ['Voice Speed', 'Face Security', 'Hands-Free', 'Contextual AI', 'User Simplicity'].map(wrapLabel),
+                datasets: [
+                    {
+                        label: 'YamPay (Voice-First)',
+                        data: [98, 95, 100, 90, 92],
+                        borderColor: '#ef4444',
+                        backgroundColor: 'rgba(239, 68, 68, 0.15)',
+                        pointBackgroundColor: '#ef4444'
+                    },
+                    {
+                        label: 'Traditional Apps',
+                        data: [40, 85, 10, 30, 60],
+                        borderColor: '#3b82f6',
+                        backgroundColor: 'rgba(59, 130, 246, 0.15)',
+                        pointBackgroundColor: '#3b82f6'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        ticks: { display: false },
+                        grid: { color: '#e2e8f0' },
+                        pointLabels: { font: { family: 'Inter', size: 10, weight: 'bold' } }
+                    }
+                },
+                plugins: {
+                    legend: { position: 'bottom', labels: { font: { size: 11, family: 'Inter' } } },
+                    tooltip: tooltipConfig
+                }
+            }
+        });
+    </script>
+</body>
+</html>
